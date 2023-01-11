@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <style>
+        #box {
+            width: 700px;
+            margin: 50px auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <h2>图书管理系统</h2>
+    <table class="layui-hide" id="book"></table>
+</div>
+
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#book'
+            , url: '/book/list'
+            , cellMinWidth: 80
+            , page: true
+            , cols: [
+                [
+                    {field: 'id', width: 80, title: 'ID', sort: true}
+                    , {field: 'name', title: '图书名称', sort: true}
+                    , {field: 'price', title: '价格', sort: true}
+                    , {field: 'storageTime', title: '入库时间',width: 180, sort: true}
+                    , {field: 'createBy', title: '入库人'}
+                    , {field: 'remark', title: '备注'}
+                ]
+            ]
+        });
+    });
+</script>
+</body>
+</html>
